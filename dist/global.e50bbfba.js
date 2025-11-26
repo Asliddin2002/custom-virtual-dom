@@ -117,131 +117,62 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"vdom/createElement.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = exports.default = function _default(tagName, _ref) {
-  var attrs = _ref.attrs,
-    children = _ref.children;
-  var vElem = Object.create(null);
-  Object.assign(vElem, {
-    tagName: tagName,
-    attrs: attrs,
-    children: children
-  });
-  return vElem;
-};
-},{}],"vdom/render.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-var _render = function render(vNode) {
-  var $el = document.createElement(vNode.tagName);
-  for (var _i = 0, _Object$entries = Object.entries(vNode.attrs); _i < _Object$entries.length; _i++) {
-    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-      k = _Object$entries$_i[0],
-      v = _Object$entries$_i[1];
-    if (k.startsWith("on") && typeof v === "function") {
-      var event = k.slice(2);
-      $el.addEventListener(event, v);
-    } else {
-      $el.setAttribute(k, v);
+})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+  return bundleURL;
+}
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
   }
-  if (vNode !== null && vNode !== void 0 && vNode.children) {
-    var _iterator = _createForOfIteratorHelper(vNode.children),
-      _step;
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var child = _step.value;
-        if (_typeof(child) === "object") {
-          $el.appendChild(_render(child));
-        } else {
-          $el.textContent = child;
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
+  return '/';
+}
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
   }
-  return $el;
-};
-var _default = exports.default = _render;
-},{}],"main.js":[function(require,module,exports) {
-"use strict";
-
-var _createElement = _interopRequireDefault(require("./vdom/createElement"));
-var _render = _interopRequireDefault(require("./vdom/render"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var mood = "😴 tired of coding all day";
-function buildApp() {
-  return (0, _createElement.default)("div", {
-    attrs: {
-      id: "app",
-      class: "wrapper"
-    },
-    children: [(0, _createElement.default)("h1", {
-      attrs: {
-        class: "title"
-      },
-      children: ["Custom Virtual DOM Demo 🚀"]
-    }), (0, _createElement.default)("p", {
-      attrs: {
-        class: "subtitle"
-      },
-      children: ["A tiny VDOM built from scratch."]
-    }), (0, _createElement.default)("img", {
-      attrs: {
-        src: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDIwNDAxNWp4Y2tmcXRuM2d3YmFqMnZ2Y3YzN2U5YmdseTR2bWUwMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/gx54W1mSpeYMg/giphy.gif",
-        class: "cat-image"
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
       }
-    }), (0, _createElement.default)("p", {
-      attrs: {
-        class: "mood-text"
-      },
-      children: ["Developer mood: ".concat(mood)]
-    }), (0, _createElement.default)("button", {
-      attrs: {
-        class: "btn-change",
-        onclick: function onclick() {
-          handleChangeMood();
-        }
-      },
-      children: ["Change Mood"]
-    })]
-  });
+    }
+    cssTimeout = null;
+  }, 50);
 }
-function handleChangeMood() {
-  mood = mood === "😴 tired of coding all day" ? "🔥 motivated to build cool things!" : "😴 tired of coding all day";
-  rerender();
-}
-function rerender() {
-  var root = document.getElementById("root");
-  root.innerHTML = "";
-  root.appendChild((0, _render.default)(buildApp()));
-}
-console.log("mood", mood);
-
-// Initial render
-rerender();
-},{"./vdom/createElement":"vdom/createElement.js","./vdom/render":"vdom/render.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"global.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -410,5 +341,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/global.e50bbfba.js.map

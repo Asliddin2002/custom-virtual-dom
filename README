@@ -1,0 +1,44 @@
+# Custom Virtual DOM (From Scratch)
+
+A lightweight educational project that demonstrates how a Virtual DOM works internally — written in plain JavaScript. It includes virtual element creation, DOM rendering, event handling, and a small interactive UI demo.
+
+## Features
+
+- Custom Virtual DOM implementation
+- `createElement` for building VNodes
+- `render` function for converting VNodes into real DOM elements
+- Built-in event listener support (`onclick`, etc.)
+- Simple rerendering mechanism
+- Minimal, clean demo UI
+- Dependency-free (only Vite for dev server)
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/your-username/custom-virtual-dom.git
+
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Run the Project
+
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```bash
+├── vdom/
+│ ├── createElement.js
+│ ├── render.js
+├── main.js
+├── index.html
+├── global.css
+└── README.md
+```
