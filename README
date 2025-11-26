@@ -1,43 +1,33 @@
-# Custom Virtual DOM (From Scratch)
+# Foobar
 
-A lightweight educational project that demonstrates how a Virtual DOM works internally — written in plain JavaScript. It includes virtual element creation, DOM rendering, event handling, and a small interactive UI demo.
+Foobar is a Python library for dealing with word pluralization.
 
-## Features
+## Installation
 
-- Custom Virtual DOM implementation
-- `createElement` for building VNodes
-- `render` function for converting VNodes into real DOM elements
-- Built-in event listener support (`onclick`, etc.)
-- Simple rerendering mechanism
-- Minimal, clean demo UI
-- Dependency-free (only Vite for dev server)
-
-## Clone the Repository
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
-git clone https://github.com/your-username/custom-virtual-dom.git
+pip install foobar
 ```
 
-## Install Dependencies
+## Usage
 
-```bash
-npm install
+```python
+import foobar
+
+# returns 'words'
+foobar.pluralize('word')
+
+# returns 'geese'
+foobar.pluralize('goose')
+
+# returns 'phenomenon'
+foobar.singularize('phenomena')
 ```
 
-## Run the Project
+## Contributing
 
-```bash
-npm run dev
-```
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-## Project Structure
-
-```bash
-├── vdom/
-│ ├── createElement.js
-│ ├── render.js
-├── main.js
-├── index.html
-├── global.css
-└── README.md
-```
+Please make sure to update tests as appropriate.
