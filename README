@@ -15,8 +15,7 @@ A lightweight educational project that demonstrates how a Virtual DOM works inte
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/custom-virtual-dom.git
-
+git clone https://github.com/Asliddin2002/custom-virtual-dom.git
 ```
 
 ## Install Dependencies
