@@ -10,7 +10,6 @@ A lightweight educational project that demonstrates how a Virtual DOM works inte
 - Built-in event listener support (`onclick`, etc.)
 - Simple rerendering mechanism
 - Minimal, clean demo UI
-- Dependency-free (only Vite for dev server)
 
 ## Clone the Repository
 
